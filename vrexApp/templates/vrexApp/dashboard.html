@@ -1,0 +1,20 @@
+{% extends 'vrexApp/base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2 class="mb-4">Welcome, {{ user }}! 👋</h2>
+                <p class="lead">We're delighted to have you here. Explore the features and services tailored just for you.</p>
+                <div class="mt-4">
+                    <a href="{% url 'announcement' %}" class="btn btn-primary btn-lg mr-3">
+                        Explore Announcements
+                    </a>
+                    <a href="{% url 'formrequest' %}" class="btn btn-success btn-lg">
+                        Request School Forms
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

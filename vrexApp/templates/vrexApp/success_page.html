@@ -1,0 +1,40 @@
+{% extends 'vrexApp/base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card p-5 text-center">
+            <h5 class="mb-4 text-success">Success!</h5>
+            <p class="mb-3">Your form has been successfully submitted.</p>
+            <p>Redirecting back to the form in 5 seconds...</p>
+        </div>
+    </div>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h5 {
+            color: #28a745;
+        }
+    </style>
+
+    <script>
+        // Redirect back to the form request page after 5 seconds
+        setTimeout(function () {
+            window.location.href = "{% url 'formrequest' %}";
+        }, 5000);
+    </script>
+{% endblock %}

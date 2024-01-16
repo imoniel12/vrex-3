@@ -1,0 +1,36 @@
+{% extends 'vrexApp/base.html' %}
+
+
+{% block content %}
+    <body>
+
+        <br>
+        <br>
+
+        <div class="text-center">
+            <h3> VCSMS Registrar</h3>
+
+            <br>
+            <h5>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corrupti facilis sit enim voluptatibus magni doloribus omnis consequatur odio reprehenderit laudantium! Hic dolorem quidem ducimus voluptatum rem ipsum, enim nulla quasi?</h5>
+            
+            <hr>
+            <br>
+
+
+            <a class="btn btn-primary" type="button" href="{% url '' %}">REQUEST NOW</a> 
+            <br>
+            <br>
+            <a class="btn btn-primary" type="button" href="{% url 'login' %}">LOGIN</a>
+            <br>
+            <br>
+            <a class="btn btn-primary" type="button" href="{% url 'register' %}">SIGN UP</a> 
+            <br>
+            <br>
+            <hr>
+        </div>
+            
+
+
+    </body>
+
+{% endblock %}

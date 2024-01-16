@@ -1,0 +1,35 @@
+{% extends "admin/change_list_chart.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Status');
+            data.addColumn('number', 'Count');
+
+            {% for status, count in chart_data.items %}
+                data.addRow(['{{ status }}', {{ count }}]);
+            {% endfor %}
+
+            var options = {
+                title: 'Form Status Distribution',
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div id="content-main">
+        <div id="chart_div" style="width: 100%; height: 400px;"></div>
+        {{ block.super }}
+    </div>
+{% endblock %}

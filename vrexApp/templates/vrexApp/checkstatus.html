@@ -1,0 +1,41 @@
+{% extends 'vrexApp/base.html' %}
+
+{% block content %}
+
+    <h2> Check Status </h2>
+
+    {% if requested_forms %}
+        <div class="container mt-4">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        
+                        <th>Name</th>
+                        <th>User Type</th>
+                        <th>Purpose</th>
+                        <th>Form Requested</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                        <th>Date Released</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for form in requested_forms %}
+                        <tr>
+                            <td>{{ form.first_name }} {{ form.last_name }}</td>
+                            <td>{{ form.user_type }}</td>
+                            <td>{{ form.purpose }}</td>
+                            <td>{{ form.get_requestform_display }}</td>
+                            <td>{{ form.request_date }}</td>
+                            <td>{{ form.status }}</td>
+                            <td>{{ form.date_released|date:"m-d-Y"  }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>No requested forms found.</p>
+    {% endif %}
+
+{% endblock %}

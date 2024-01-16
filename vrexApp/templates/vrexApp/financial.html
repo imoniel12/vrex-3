@@ -1,0 +1,29 @@
+{% extends 'vrexApp/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2 class="mb-4">Student Financial Assistance</h2>
+
+                <p class="lead">We understand the importance of supporting students in their academic journey. Explore opportunities for financial assistance to help you achieve your educational goals.</p>
+
+                <form method="post" action="{% url 'formrequest' %}" class="needs-validation" novalidate>
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Apply for Assistance</button>
+                    </div>
+                </form>
+
+                <div class="mt-4">
+                    <a href="{% url 'announcement' %}" class="btn btn-secondary btn-lg">
+                        Explore Announcements
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

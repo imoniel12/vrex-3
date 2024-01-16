@@ -1,0 +1,67 @@
+{% extends 'vrexApp/base.html' %}
+
+{% block content %}
+    <div class="container mt-4">
+        {% if user.is_authenticated %}
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Monthly Calendar - {{ current_month }}</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" id="calendar">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Sun</th>
+                                <th scope="col">Mon</th>
+                                <th scope="col">Tue</th>
+                                <th scope="col">Wed</th>
+                                <th scope="col">Thu</th>
+                                <th scope="col">Fri</th>
+                                <th scope="col">Sat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Calendar content will be dynamically generated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var currentDate = new Date();
+                    generateCalendar(currentDate.getFullYear(), currentDate.getMonth() + 1);
+                });
+
+                function generateCalendar(year, month) {
+                    var calendarTable = document.getElementById('calendar').getElementsByTagName('tbody')[0];
+                    calendarTable.innerHTML = '';
+
+                    var firstDay = new Date(year, month - 1, 1);
+                    var startingDay = firstDay.getDay();
+                    var lastDay = new Date(year, month, 0).getDate();
+
+                    var row = calendarTable.insertRow();
+
+                    for (var i = 0; i < startingDay; i++) {
+                        var cell = row.insertCell();
+                        cell.innerHTML = '';
+                    }
+
+                    for (var day = 1; day <= lastDay; day++) {
+                        var cell = row.insertCell();
+                        cell.innerHTML = day;
+
+                        if ((day + startingDay) % 7 === 0 && day !== lastDay) {
+                            row = calendarTable.insertRow();
+                        }
+                    }
+                }
+            </script>
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                Please log in to view the calendar.
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
